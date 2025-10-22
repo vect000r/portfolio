@@ -83,3 +83,24 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Skill(models.Model):
+    """
+    Represents a skill that I posses
+    """
+    name = models.CharField(max_length=100)
+    category = models.CharField(
+        max_length=50,
+        choices=[
+            ('frontend', 'Frontend'),
+            ('backend', 'Backend'),
+            ('tools', 'Tools & Other'),
+            ('soft', 'Soft skills'),
+        ]
+    )
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['category', 'order']
+

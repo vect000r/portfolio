@@ -20,6 +20,13 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 MEDIA_URL = '/images/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',

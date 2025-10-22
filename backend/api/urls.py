@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from .views import (
     EducationViewSet,
     ProjectViewSet,
+    contact,
 )
 
 router = DefaultRouter()
@@ -14,6 +15,7 @@ router.register('project', ProjectViewSet, basename='project')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('contact/', contact, name='contact'),
 ]
 
 if settings.DEBUG:

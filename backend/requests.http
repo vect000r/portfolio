@@ -1,4 +1,11 @@
 ### GET
 GET http://localhost:8000/api/test/
-
 ###
+POST http://localhost:8000/api/contact/
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "message": "Hello!"
+}
