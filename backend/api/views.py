@@ -1,10 +1,12 @@
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets, status
 from rest_framework.permissions import AllowAny, IsAdminUser
-from rest_framework.decorators import api_view, permission_classes, throttle_classes
 from django.core.mail import send_mail
 from django.conf import settings
 from rest_framework.throttling import UserRateThrottle
+from django.views.decorators.http import require_http_methods
+import json
 
 import logging
 
@@ -58,38 +60,43 @@ class SkillViewSet(viewsets.ModelViewSet):
 class ContactThrottle(UserRateThrottle):
     scope = 'contact'
 
-@api_view(['POST'])
-@permission_classes([])
-@throttle_classes([ContactThrottle])
-def contact(request):
-    name = request.data.get('name')
-    email = request.data.get('email')
-    message_body = request.data.get('message')
 
-    if not name or not email or not message_body:
-        return Response(
-            {"status": "error", "message": "All fields are required"},
-            status=status.HTTP_400_BAD_REQUEST
+@csrf_exempt
+@require_http_methods(["POST"])
+def contact(request):
+    try:
+        data = json.loads(request.body)
+        name = data.get('name', '').strip()
+        email = data.get('email', '').strip()
+        message_body = data.get('message', '').strip()
+
+        if not name or not email or not message_body:
+            return JsonResponse(
+                {"error": "All fields are required"},
+                status=400
+            )
+
+        # Send email
+        from django.core.mail import send_mail
+        from django.conf import settings
+
+        subject = f"Portfolio Contact from {name}"
+        message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message_body}"
+
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [settings.EMAIL_HOST_USER],
         )
 
-    try:
-        subject = f"Portfolio Contact: {name}"
-        message_text = f"Name: {name}\nEmail: {email}\nMessage: {message_body}\n"
-        from_email = settings.EMAIL_HOST_USER
-        recipient_list = [settings.EMAIL_HOST_USER]
-
-        send_mail(subject, message_text, from_email, recipient_list)
+        return JsonResponse(
+            {"message": "Your message has been sent"},
+            status=200
+        )
 
     except Exception as e:
-        logger.error(f"Failed to send email notification: {str(e)}")
-        return Response(
-            {"status": "error", "message": "Failed to send message"},
-            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        return JsonResponse(
+            {"error": "Failed to send message"},
+            status=500
         )
-
-    return Response(
-        {"status": "success", "message": "Your message has been sent"},
-        status=status.HTTP_201_CREATED
-    )
-
-contact = csrf_exempt(contact)

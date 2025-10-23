@@ -19,7 +19,7 @@ export default function ProjectDetail() {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/api/project/${id}/`);
+        const response = await fetch(`/api/project/${id}/`);
         if (!response.ok) throw new Error("Failed to fetch project");
         const data = await response.json();
         setProject(data);

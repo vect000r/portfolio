@@ -21,7 +21,7 @@ export default function Education() {
   useEffect(() => {
     const fetchEducation = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/education/");
+        const response = await fetch("/api/education/");
         if (!response.ok) throw new Error("Failed to fetch education");
         const data = await response.json();
         setEducation(data);

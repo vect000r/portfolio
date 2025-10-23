@@ -14,7 +14,7 @@ export default function Skills() {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/skill/");
+        const response = await fetch("/api/skill/");
         if (!response.ok) {
           throw new Error("Failed to fetch skills");
         }

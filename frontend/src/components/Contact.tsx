@@ -31,7 +31,7 @@ export default function Contact() {
     setStatus(null);
 
     try {
-      const response = await fetch("http://localhost:8000/api/contact/", {
+      const response = await fetch("/api/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -94,12 +94,12 @@ export default function Contact() {
 
         {status === "success" && (
           <p className="status-message success">
-            ✓ Your message has been sent!
+            Your message has been sent!
           </p>
         )}
         {status === "error" && (
           <p className="status-message error">
-            ✗ Failed to send message. Try again later.
+            Failed to send message. Try again later.
           </p>
         )}
       </form>
