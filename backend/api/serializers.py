@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import Education, Project
+from api.models import Education, Project, Skill
 
 class EducationSerializer(serializers.ModelSerializer):
     """Serializer for Education model."""
@@ -47,3 +47,9 @@ class ProjectSerializer(serializers.ModelSerializer):
                 "At least one of 'url' or 'github_url' must be provided"
             )
         return data
+
+
+class SkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skill
+        fields = '__all__'

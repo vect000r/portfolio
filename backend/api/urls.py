@@ -6,12 +6,14 @@ from django.conf.urls.static import static
 from .views import (
     EducationViewSet,
     ProjectViewSet,
+    SkillViewSet,
     contact,
 )
 
 router = DefaultRouter()
 router.register('education', EducationViewSet, basename='education')
 router.register('project', ProjectViewSet, basename='project')
+router.register('skill', SkillViewSet, basename='skill')
 
 urlpatterns = [
     path('', include(router.urls)),
