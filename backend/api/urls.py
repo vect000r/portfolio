@@ -7,7 +7,6 @@ from .views import (
     EducationViewSet,
     ProjectViewSet,
     SkillViewSet,
-    contact,
 )
 
 router = DefaultRouter()
@@ -17,7 +16,6 @@ router.register('skill', SkillViewSet, basename='skill')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('contact/', contact, name='contact'),
 ]
 
 if settings.DEBUG:
