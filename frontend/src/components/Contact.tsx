@@ -111,7 +111,7 @@ export default function Contact() {
         <a href="https://github.com/vect000r" className="contact-link">
           GITHUB
         </a>
-        <a href="https://linkedin.com/in/yourusername" className="contact-link">
+        <a href="https://www.linkedin.com/in/bart%C5%82omiej-galek-864b7b26b/" className="contact-link">
           LINKEDIN
         </a>
       </div>
