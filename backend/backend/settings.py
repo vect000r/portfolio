@@ -151,11 +151,17 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
 
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
     # Database - Railway provides DATABASE_URL
     DATABASES['default'] = dj_database_url.config(
         default=config('DATABASE_URL'),
         conn_max_age=600
     )
+
+    CSRF_TRUSTED_ORIGINS = [
+        'https://portfolio-production-be6e.up.railway.app',
+    ]
 
     # Static files with WhiteNoise
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
