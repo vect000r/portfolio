@@ -20,7 +20,13 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
 # Media configuration
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+if not DEBUG:
+    MEDIA_ROOT = '/app/backend/media'  # Railway volume path
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_PORT = 587
