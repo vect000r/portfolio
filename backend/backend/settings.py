@@ -134,11 +134,6 @@ USE_TZ = True
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR.parent / 'frontend' / 'dist',
-]
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -148,9 +143,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
 
-# Production settings
+
 if not DEBUG:
-    # Security
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
@@ -159,7 +153,6 @@ if not DEBUG:
 
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    # Database - Railway provides DATABASE_URL
     DATABASES['default'] = dj_database_url.config(
         default=config('DATABASE_URL'),
         conn_max_age=600
@@ -169,12 +162,11 @@ if not DEBUG:
         'https://portfolio-production-be6e.up.railway.app',
     ]
 
-    # Static files with WhiteNoise
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-    # Serve React build
     STATICFILES_DIRS = [
         BASE_DIR.parent / 'frontend' / 'dist',
     ]
 
+    WHITENOISE_ALLOW_ALL_ORIGINS = True
