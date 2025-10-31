@@ -2,10 +2,18 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "apt-get update && apt-get install -y curl python3 python3-venv && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && apt-get install -y nodejs && cd frontend && npm install && npm run build && cd ../backend && python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    "buildCommand": "apt-get update && apt-get install -y curl python3 python3-venv && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && apt-get install -y nodejs && cd frontend && npm install && npm run build && cd ../backend && python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt && python manage.py collectstatic --noinput",
+    "nixpacksConfig": {
+      "configs": [
+        {
+          "type": "apt",
+          "packages": ["python3", "python3-venv", "nodejs", "curl"]
+        }
+      ]
+    }
   },
   "deploy": {
-    "startCommand": "cd backend && . venv/bin/activate && python manage.py migrate && python manage.py createsuperuser --noinput || true && gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT",
+    "startCommand": "cd backend && . venv/bin/activate && python manage.py migrate && python manage.py createsuperuser --noinput || true && mkdir -p /app/backend/media/Images/2025/10 && gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }
