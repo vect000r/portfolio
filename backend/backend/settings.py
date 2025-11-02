@@ -14,7 +14,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 MEDIA_URL = '/media/'
 
 if not DEBUG:
-    MEDIA_ROOT = '/app/backend/media'
+    MEDIA_ROOT = '/app/backend/media/images/2025/10'
     import os
     if not os.path.exists(MEDIA_ROOT):
         os.makedirs(MEDIA_ROOT)
