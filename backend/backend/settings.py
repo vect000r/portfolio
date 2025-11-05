@@ -129,6 +129,7 @@ if not DEBUG:
 
     CSRF_TRUSTED_ORIGINS = [
         'https://portfolio-production-be6e.up.railway.app',
+        'https://vect000r-dev.site'
     ]
 
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
