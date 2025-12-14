@@ -13,9 +13,58 @@
         canvas {
             display: block;
         }
+
+        .centered-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+
+        .centered-text h1 {
+            font-size: 48px;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 20px rgba(255, 183, 213, 0.5),
+                         0 0 40px rgba(255, 183, 213, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .centered-text h1 {
+                font-size: 36px;
+                letter-spacing: 1px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .centered-text h1 {
+                font-size: 28px;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .centered-text h1 {
+                font-size: 24px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="centered-text">
+        <h1>Hej Gloria</h1>
+        <h1>smacznej kawusi</h1>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         const scene = new THREE.Scene();
