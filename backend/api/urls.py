@@ -5,6 +5,7 @@ from .views import (
     EducationViewSet,
     ProjectViewSet,
     SkillViewSet,
+    gloria_view
 )
 
 router = DefaultRouter()
@@ -14,4 +15,5 @@ router.register('skill', SkillViewSet, basename='skill')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('gloria/', gloria_view, name='gloria')
 ]

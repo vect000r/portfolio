@@ -5,6 +5,7 @@ from rest_framework.permissions import AllowAny, IsAdminUser
 from django.core.mail import send_mail
 from django.conf import settings
 from rest_framework.throttling import UserRateThrottle
+from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 import json
 
@@ -60,3 +61,8 @@ class SkillViewSet(viewsets.ModelViewSet):
 class ContactThrottle(UserRateThrottle):
     scope = 'contact'
 
+def gloria_view(request):
+    """
+    Renders the flowers for the gloria view
+    """
+    return render(request, 'gloria.html')
