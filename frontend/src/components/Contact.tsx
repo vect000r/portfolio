@@ -8,11 +8,11 @@ export default function Contact() {
       </h2>
       
       <p className="contact-text">
-        $ echo "Let's build something together"
+        $ echo "Have a dataset, a model, or a hard problem?"
       </p>
       
       <div className="contact-links">
-        <a href="mailto:vectoreddd@email.com" className="contact-link">
+        <a href="mailto:vectoreddd@gmail.com" className="contact-link">
           EMAIL
         </a>
         <a href="https://github.com/vect000r" className="contact-link">

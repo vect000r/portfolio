@@ -1,6 +1,5 @@
 from pathlib import Path
 from decouple import config, Csv
-import os
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,12 +13,9 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 MEDIA_URL = '/media/'
 
 if not DEBUG:
-    MEDIA_ROOT = '/app/backend/media/images/2025/10'
-    import os
-    if not os.path.exists(MEDIA_ROOT):
-        os.makedirs(MEDIA_ROOT)
+    MEDIA_ROOT = BASE_DIR / 'media'
 else:
-    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+    MEDIA_ROOT = BASE_DIR / 'media'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_PORT = 587
@@ -73,8 +69,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
+DATABASE_URL = config('DATABASE_URL', default='')
 DATABASES = {
-    'default': {
+    'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+    if DATABASE_URL
+    else {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
@@ -112,9 +111,11 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-]
+CORS_ALLOWED_ORIGINS = config(
+    'CORS_ALLOWED_ORIGINS',
+    default='http://localhost:5173',
+    cast=Csv(),
+)
 
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
@@ -125,15 +126,7 @@ if not DEBUG:
 
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    DATABASES['default'] = dj_database_url.config(
-        default=config('DATABASE_URL'),
-        conn_max_age=600
-    )
-
-    CSRF_TRUSTED_ORIGINS = [
-        'https://portfolio-production-be6e.up.railway.app',
-        'https://vect000r-dev.site'
-    ]
+    CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='', cast=Csv())
 
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

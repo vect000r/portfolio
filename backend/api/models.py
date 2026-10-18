@@ -34,6 +34,7 @@ class Education(models.Model):
     class Meta:
         ordering = ['order', '-start_date']
         verbose_name_plural = 'Education'
+        indexes = [models.Index(fields=['order', '-start_date'])]
 
     def __str__(self):
         return f"{self.degree} at {self.school}"
@@ -80,6 +81,7 @@ class Project(models.Model):
 
     class Meta:
         ordering = ['order', '-created_at']
+        indexes = [models.Index(fields=['order', '-created_at'])]
 
     def __str__(self):
         return self.title
@@ -94,4 +96,42 @@ class Skill(models.Model):
 
     class Meta:
         ordering = ['order']
+        indexes = [models.Index(fields=['order'])]
 
+
+class Experience(models.Model):
+    """Represents a professional work experience entry."""
+
+    company = models.CharField(max_length=200)
+    role = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    start_date = models.DateField()
+    end_date = models.DateField(
+        null=True,
+        blank=True,
+        help_text="Leave blank for a current position",
+    )
+    technologies = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="List of technologies used in this role",
+    )
+    location = models.CharField(max_length=100, blank=True)
+    order = models.PositiveIntegerField(
+        default=0,
+        help_text="Display order (lower numbers first)",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['order', '-start_date']
+        indexes = [models.Index(fields=['order', '-start_date'])]
+
+    def __str__(self):
+        return f"{self.role} at {self.company}"
+
+    @property
+    def years_display(self):
+        end = self.end_date.year if self.end_date else 'Present'
+        return f"{self.start_date.year} - {end}"
