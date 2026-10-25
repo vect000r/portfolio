@@ -2,16 +2,16 @@ export default function Hero() {
   return (
     <section className="hero-section">
       <div className="hero-copy">
-        <p className="eyebrow">AI/ML ENGINEER / RETRIEVAL SYSTEMS / NLP</p>
+        <p className="eyebrow">AI/ML DEVELOPER / RAG ARCHITECT / MCP BUILDER</p>
         <h1>
           Making AI
           <br />
           <span>useful.</span>
         </h1>
         <p className="hero-description">
-          I&apos;m Bartek, an AI/ML developer focused on turning language models
-          into reliable products — grounded in your data, measured in production,
-          and built for people.
+          AI/ML developer with professional experience of providing
+          user-oriented AI-powered solutions. Specialized in RAG design and MCP
+          servers.
         </p>
         <div className="hero-actions">
           <a className="terminal-button terminal-button-primary" href="#projects">
@@ -29,8 +29,8 @@ export default function Hero() {
         </div>
         <pre>{`const engineer = {
   name: "Bartek",
-  focus: ["RAG", "NLP", "MCP servers"],
-  tools: ["Python", "Elasticsearch", "LangChain"],
+  focus: ["RAG design", "NLP", "MCP servers"],
+  tools: ["Python", "Elasticsearch", "LLM APIs"],
   vector_store: "Elasticsearch",
   integrations: ["MCP"],
   status: "inference-ready"

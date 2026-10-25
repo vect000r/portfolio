@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap");
 
 :root {
   font-family: "IBM Plex Mono", monospace;
-  color: #d8e4d4;
-  background: #111411;
+  color: #f4f1f8;
+  background: #09080c;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,7 +14,7 @@
 }
 
 html {
-  background: #111411;
+  background: #09080c;
   scroll-behavior: smooth;
 }
 

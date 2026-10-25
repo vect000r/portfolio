@@ -1,21 +1,21 @@
 :root {
-  --bg: #111411;
-  --panel: #171b17;
-  --panel-bright: #1d241d;
-  --ink: #d8e4d4;
-  --muted: #8fa28b;
-  --green: #b8f36b;
-  --green-dim: #6f9e55;
-  --amber: #f2bd6b;
-  --red: #eb7f70;
-  --line: rgba(184, 243, 107, .24);
+  --bg: #09080c;
+  --panel: #111016;
+  --panel-bright: #181520;
+  --ink: #f4f1f8;
+  --muted: #aaa2b4;
+  --green: #bf8cff;
+  --green-dim: #80689b;
+  --amber: #d4c9df;
+  --red: #a79bb2;
   --mono: "IBM Plex Mono", monospace;
+  --display: "Space Mono", monospace;
 }
 
 body {
   background:
-    linear-gradient(rgba(184, 243, 107, .025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(184, 243, 107, .025) 1px, transparent 1px),
+    linear-gradient(rgba(191, 140, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(191, 140, 255, .035) 1px, transparent 1px),
     var(--bg);
   background-size: 24px 24px;
 }
@@ -48,7 +48,7 @@ body::before {
   top: 0;
   z-index: 10;
   border-bottom: 1px solid var(--line);
-  background: rgba(17, 20, 17, .94);
+  background: rgba(9, 8, 12, .94);
   backdrop-filter: blur(12px);
 }
 
@@ -192,7 +192,7 @@ h1 {
   max-width: 800px;
   margin: 0;
   color: var(--ink);
-  font: 600 clamp(4rem, 9vw, 8.5rem)/.88 var(--mono);
+  font: 700 clamp(4rem, 9vw, 8.5rem)/.88 var(--display);
   letter-spacing: -.1em;
 }
 
@@ -297,7 +297,7 @@ h1 span {
 .content-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(260px, .6fr);
-  gap: 4rem;
+  gap: 5rem;
   align-items: start;
 }
 
@@ -310,9 +310,9 @@ h1 span {
   display: flex;
   align-items: center;
   gap: 9px;
-  margin: 0 0 24px;
+  margin: 0 0 30px;
   color: var(--ink);
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: .1em;
 }
 
@@ -342,7 +342,8 @@ h1 span {
 }
 
 .skill-tag {
-  padding: 8px 10px;
+  padding: 10px 13px;
+  font-size: 12px;
 }
 
 .skill-tag:hover {
@@ -369,7 +370,7 @@ h1 span {
   grid-template-columns: auto 1fr auto;
   gap: 18px;
   align-items: center;
-  padding: 18px;
+  padding: 24px;
   cursor: pointer;
 }
 
@@ -385,7 +386,7 @@ h1 span {
 .experience-marker,
 .edu-number {
   color: var(--green);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .project-title,
@@ -393,31 +394,31 @@ h1 span {
 .experience-heading h3 {
   margin: 0;
   color: var(--ink);
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .project-description,
 .edu-content p,
 .experience-description {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 .project-arrow {
   border: 0;
   color: var(--green);
   background: transparent;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .experience-item,
 .education-item {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 16px;
-  padding: 18px;
+  gap: 20px;
+  padding: 24px;
 }
 
 .experience-heading {
@@ -429,9 +430,9 @@ h1 span {
 .experience-company,
 .experience-dates,
 .experience-location {
-  margin: 5px 0 0;
+  margin: 7px 0 0;
   color: var(--green-dim);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .experience-dates,
@@ -453,7 +454,8 @@ h1 span {
 }
 
 .technology-list li {
-  padding: 5px 7px;
+  padding: 7px 9px;
+  font-size: 11px;
 }
 
 .education-item {
@@ -466,14 +468,15 @@ h1 span {
 }
 
 .contact-section {
-  padding: 48px;
+  padding: 60px;
   border: 1px solid var(--line);
   background: var(--panel);
 }
 
 .contact-text {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 15px;
+  line-height: 1.8;
 }
 
 .contact-links {
@@ -485,7 +488,7 @@ h1 span {
 
 .contact-link {
   color: var(--green);
-  font-size: 12px;
+  font-size: 13px;
   text-decoration: none;
 }
 
