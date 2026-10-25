@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="terminal-footer">
-      <p>© 2025 BARTŁOMIEJ GALEK • CRAFTED WITH REACT & DJANGO</p>
+      <p>© 2026 BARTŁOMIEJ GALEK • RAG / NLP / MCP / ML SYSTEMS</p>
     </footer>
   );
 }

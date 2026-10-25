@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from api.models import Education, Project, Skill
+from api.models import Education, Experience, Project, Skill
 
 class EducationSerializer(serializers.ModelSerializer):
     """Serializer for Education model."""
-    years_display = serializers.CharField(source='get_years_display', read_only=True)
+    years_display = serializers.CharField(read_only=True)
 
     class Meta:
         model = Education
@@ -42,9 +42,11 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         """Ensure at least one URL is provided"""
-        if not data.get('url') and not data.get('github_url'):
+        live_url = data.get('live_url', getattr(self.instance, 'live_url', ''))
+        github_url = data.get('github_url', getattr(self.instance, 'github_url', ''))
+        if not live_url and not github_url:
             raise serializers.ValidationError(
-                "At least one of 'url' or 'github_url' must be provided"
+                "At least one of 'live_url' or 'github_url' must be provided"
             )
         return data
 
@@ -53,3 +55,16 @@ class SkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skill
         fields = '__all__'
+
+
+class ExperienceSerializer(serializers.ModelSerializer):
+    years_display = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = Experience
+        fields = [
+            'id', 'company', 'role', 'description', 'start_date', 'end_date',
+            'years_display', 'technologies', 'location', 'order',
+            'created_at', 'updated_at',
+        ]
+        read_only_fields = ('id', 'created_at', 'updated_at')
